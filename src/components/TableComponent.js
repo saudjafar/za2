@@ -16,7 +16,6 @@ import Checkbox from '@mui/material/Checkbox';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CircleIcon from '@mui/icons-material/Circle';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { SortRounded } from '@mui/icons-material';
 
 
 
@@ -127,6 +126,9 @@ const TableComponent = ({ jsonData }) => {
     if (checkedOptions.length) {
       setDisplayData(data.filter((row) => checkedOptions.includes(row.status)));
     }
+    if (checkedOptions.length == 0) {
+      setDisplayData(data);
+    }
   }, [data, checkedOptions]);
 
 
@@ -167,7 +169,7 @@ const TableComponent = ({ jsonData }) => {
         </TableRow>
         {displayData.map((row, index) => (
           <TableRow key={index}>
-            <TableCell><Deets row={row} /></TableCell>
+            <TableCell><Deets row={row} index={index} /></TableCell>
             <TableCell style={{ textAlign: 'center' }}>{row.active_order}</TableCell>
             <TableCell style={{ textAlign: 'center' }}>{row.amount}</TableCell>
             <TableCell style={{ textAlign: 'center' }}>{row.placed_on}</TableCell>
